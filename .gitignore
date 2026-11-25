@@ -1,0 +1,21 @@
+# Générés par le build et les convertisseurs (ne jamais commiter)
+romfs/
+gfx/
+build/
+out/
+input/
+tools/ffdec/
+
+# Binaires et assets propriétaires
+*.swf
+*.cia
+*.3dsx
+*.elf
+*.smdh
+*.bnr
+*.t3x
+*.bcfnt
+*.lvl
+*.wav
+*.ogg
+*.bin
