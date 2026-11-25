@@ -32,6 +32,10 @@ Portage complet de *The World's Hardest Game 2* sur Nintendo 3DS (**50 niveaux p
 ---
 
 ## Installation sur Nintendo 3DS
+- **Via QR Code (FBI -> Remote Install -> Scan QR Code)** :
+
+  ![QR Code FBI](meta/qr_cia.png)
+
 - **Via CIA (recommandé, CFW Luma3DS requis)** : copiez `whg2-3ds.cia` sur votre carte SD et installez-le avec **FBI**.
 - **Via Homebrew Launcher** : copiez `whg2-3ds.3dsx` dans `sdmc:/3ds/`.
 - *(Optionnel pour le son)* : assurez-vous d'avoir dumpé le firmware DSP (`sdmc:/3ds/dspfirm.cdc`) avec **DSP1** ou **Rosalina** (`L+Down+Select` -> Miscellaneous options -> Dump DSP firmware).
