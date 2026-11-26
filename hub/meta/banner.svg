@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="128" viewBox="0 0 256 128">
+  <defs>
+    <linearGradient id="bg" x2="0" y2="1">
+      <stop stop-color="#171b2a"/>
+      <stop offset="1" stop-color="#090c14"/>
+    </linearGradient>
+    <linearGradient id="track" x2="1" y2="0">
+      <stop stop-color="#252d40"/>
+      <stop offset=".5" stop-color="#151b28"/>
+      <stop offset="1" stop-color="#252d40"/>
+    </linearGradient>
+    <radialGradient id="glow">
+      <stop stop-color="#f04d59" stop-opacity=".4"/>
+      <stop offset="1" stop-color="#f04d59" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="tiles" width="16" height="16" patternUnits="userSpaceOnUse">
+      <path d="M0 0h8v8H0zm8 8h8v8H8z" fill="#fff" opacity=".035"/>
+    </pattern>
+    <filter id="shadow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="3"/>
+    </filter>
+  </defs>
+  <rect width="256" height="128" fill="url(#bg)"/>
+  <rect width="256" height="128" fill="url(#tiles)"/>
+  <ellipse cx="128" cy="62" rx="105" ry="45" fill="url(#glow)"/>
+  <path d="M0 94h256v34H0z" fill="url(#track)"/>
+  <path d="M0 94h256" stroke="#4a5264" stroke-width="2"/>
+  <path d="M0 126h256" stroke="#e94b57" stroke-width="2" opacity=".75"/>
+  <path d="M20 94v34M236 94v34" stroke="#e94b57" stroke-width="2" opacity=".6"/>
+  <g fill="#e9edf5" opacity=".09">
+    <rect x="16" y="100" width="14" height="14"/><rect x="30" y="114" width="14" height="14"/>
+    <rect x="212" y="100" width="14" height="14"/><rect x="226" y="114" width="14" height="14"/>
+  </g>
+  <text x="128" y="20" text-anchor="middle" fill="#ff626b" font-family="Arial,sans-serif" font-size="10" font-weight="700" letter-spacing="2">THE WORLD'S</text>
+  <text x="128" y="54" text-anchor="middle" fill="#f4f6fb" font-family="Arial,sans-serif" font-size="29" font-weight="900" letter-spacing="1">HARDEST</text>
+  <text x="128" y="78" text-anchor="middle" fill="#aeb8cc" font-family="Arial,sans-serif" font-size="18" font-weight="800" letter-spacing="3">GAMES HUB</text>
+  <path d="M43 85h170" stroke="#f04d59" stroke-width="1" opacity=".72"/>
+  <circle cx="54" cy="108" r="15" fill="#f04d59" opacity=".22" filter="url(#shadow)"/>
+  <rect x="47" y="101" width="14" height="14" rx="2" fill="#ed4d58" stroke="#fff" stroke-opacity=".5"/>
+  <path d="M50 104h8v8h-8z" fill="#ff8188" opacity=".6"/>
+  <g fill="#4f7fff" stroke="#bfd0ff" stroke-width="1">
+    <circle cx="98" cy="111" r="5"/><circle cx="137" cy="120" r="5"/><circle cx="178" cy="109" r="5"/>
+  </g>
+  <g fill="#ffc83d" stroke="#fff0b3" stroke-width="1">
+    <circle cx="225" cy="111" r="6"/><circle cx="205" cy="120" r="4"/>
+  </g>
+  <path d="M68 118h19m22 0h10m22 0h24" stroke="#8e9ab0" stroke-width="1" stroke-dasharray="2 4" opacity=".55"/>
+</svg>
