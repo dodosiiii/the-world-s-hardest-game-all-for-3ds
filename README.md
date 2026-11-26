@@ -27,6 +27,14 @@ Il produit `hub/whg-hub-3ds.cia`. Le hub utilise le logo Nintendo standard au la
 
 ## Installation
 
+### Hub final v1.2 par QR Code
+
+Dans FBI, choisis **Remote Install → Scan QR Code**, puis scanne ce code :
+
+![QR Code d’installation du hub final v1.2](meta/qr_cia.png)
+
+### Installation par fichier CIA
+
 - Pour le hub, copie `hub/whg-hub-3ds.cia` sur la carte SD et installe-le avec FBI.
 - Pour le jeu autonome, utilise `whg2-3ds.cia` ou place `whg2-3ds.3dsx` dans un dossier d'application sous `sdmc:/3ds/`.
 
