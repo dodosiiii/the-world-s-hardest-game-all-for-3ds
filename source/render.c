@@ -176,10 +176,30 @@ void render_level_top(const LevelData* lvl, const GameState* gs,
     }
 
     // Checkpoints / Goal zones
+    // kind==2 → true goal; kind==1 (no kind==2 present) → goal-as-start pad; kind==3 → mid checkpoint
+    bool has_goal2 = false;
+    for (uint16_t i = 0; i < lvl->num_checks; i++) {
+        if (lvl->checks[i].kind == 2) { has_goal2 = true; break; }
+    }
+    bool all_coins = (!gs || (gs->coins_collected_count >= lvl->num_coins));
+    u32 clrGoalFull  = C2D_Color32(0xFF, 0xD0, 0x20, 0xE0); // gold
+    u32 clrGoalBord  = C2D_Color32(0xFF, 0x80, 0x10, 0xE0); // orange border
+    u32 clrGoalFill  = C2D_Color32(0xE8, 0xE8, 0x60, 0xC0); // pale yellow fill
     for (uint16_t i = 0; i < lvl->num_checks; i++) {
         const CheckRect* c = &lvl->checks[i];
-        C2D_DrawRectSolid(ox + c->x * scale, oy + c->y * scale, 0.1f,
-                          c->w * scale, c->h * scale, clrChk);
+        float cx = ox + c->x * scale, cy = oy + c->y * scale;
+        float cw = c->w * scale,      ch = c->h * scale;
+        bool is_goal = (c->kind == 2) || (!has_goal2 && c->kind == 1 && gs && gs->left_start_check);
+        if (is_goal) {
+            if (all_coins) {
+                C2D_DrawRectSolid(cx, cy, 0.09f, cw, ch, clrGoalFull);
+            } else {
+                C2D_DrawRectSolid(cx, cy, 0.09f, cw, ch, clrGoalBord);
+                C2D_DrawRectSolid(cx + 2.0f, cy + 2.0f, 0.10f, cw - 4.0f, ch - 4.0f, clrGoalFill);
+            }
+        } else {
+            C2D_DrawRectSolid(cx, cy, 0.1f, cw, ch, clrChk);
+        }
     }
 
     // Seamless dark outline around all walls (pass 1: expanded by 1.5px)

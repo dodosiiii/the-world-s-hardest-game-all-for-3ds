@@ -1,58 +1,53 @@
-# The World's Hardest Game 2 — Nintendo 3DS (v1.0)
+# The World's Hardest Game 2 sur Nintendo 3DS
 
-Portage complet de *The World's Hardest Game 2* sur Nintendo 3DS (**50 niveaux principaux + 4 niveaux tutoriel**), livré au format `.3dsx` (Homebrew Launcher) et `.cia` (Menu HOME via FBI).
+Ce dossier racine contient le port autonome de *The World's Hardest Game 2*. Le projet final qui regroupe les quatre jeux est dans [`hub/`](hub/).
 
-> **Avertissement légal** : Ce dépôt ne contient que le moteur C et les outils de conversion Python. Les assets extraits du SWF (`romfs/`, `gfx/`, `out/`) ainsi que le `.cia` final ne doivent **jamais** être distribués dans un dépôt public. Vous devez fournir votre propre fichier `theworldshardestgame2.swf`.
+## Builds
 
----
+Depuis la racine du projet, `make` compile le jeu autonome et produit `whg2-3ds.3dsx` ainsi que `whg2-3ds.elf`.
 
-## Fonctionnalités
-- **54 niveaux complets** extraits fidèlement (murs, portes, clés, pièces, checkpoints intermédiaires, trajectoires d'ennemis exactes).
-- **Double écran 3DS** :
-  - **Écran du haut (400×240)** : terrain de jeu net (rendu vectoriel sans flou, contour sombre continu des murs).
-  - **Écran du bas (320×240)** : HUD complet (niveau, morts, barre de progression des pièces, chronomètre, minimap temps réel) + boutons tactiles et grille de sélection 5×10.
-- **Audio** : musique de fond streamée en boucle + 6 effets sonores (mort, pièce, clé, victoire, fin de jeu, pause) via `ndsp`. Si `dspfirm.cdc` est absent, le jeu fonctionne sans son et l'affiche sur l'écran titre.
-- **Sauvegarde automatique** sur carte SD (`sdmc:/3ds/whg2/save.bin`) : progression, morts totales, records par niveau et options.
+Pour fabriquer le CIA autonome installable depuis FBI :
 
----
+```sh
+make cia
+```
 
-## Contrôles
+Le CIA autonome obtenu est `whg2-3ds.cia`.
+
+### Hub final v1.2
+
+Le build final du hub se fait dans `hub/`, pas avec le Makefile de la racine :
+
+```sh
+cd hub
+make cia
+```
+
+Il produit `hub/whg-hub-3ds.cia`. Le hub utilise le logo Nintendo standard au lancement, une bannière HOME fixe et son jingle. Les réglages de la bannière sont dans `hub/Makefile`.
+
+## Installation
+
+- Pour le hub, copie `hub/whg-hub-3ds.cia` sur la carte SD et installe-le avec FBI.
+- Pour le jeu autonome, utilise `whg2-3ds.cia` ou place `whg2-3ds.3dsx` dans un dossier d'application sous `sdmc:/3ds/`.
+
+## Contrôles du jeu autonome
+
 | Touche | Action |
 |---|---|
-| **D-Pad / Circle Pad** | Déplacement en 8 directions (vitesse constante) |
-| **A** | Confirmer dans les menus |
-| **B** | Recommencer le niveau (en jeu) / Retour (menus) |
-| **X** | Afficher / masquer le HUD |
-| **Y** | Passer au niveau suivant (débloque le niveau) |
-| **L / R** | Niveau précédent / suivant dans la sélection |
-| **START** | Pause |
-| **SELECT** | Options (Son, Couleur du joueur 1–6, Chronomètre) |
-| **Écran tactile** | Boutons du HUD, sélection de niveaux, menus |
+| D-Pad / Circle Pad | Déplacer le personnage |
+| A | Confirmer |
+| B | Recommencer le niveau ou revenir en arrière |
+| X | Afficher ou masquer le HUD |
+| Y | Passer au niveau suivant |
+| L / R | Changer de niveau dans la sélection |
+| START | Mettre en pause |
+| SELECT | Ouvrir les options |
+| Écran tactile | Utiliser le HUD et les menus |
 
----
+## Prérequis de compilation
 
-## Installation sur Nintendo 3DS
-- **Via QR Code (FBI -> Remote Install -> Scan QR Code)** :
+- devkitPro avec les outils 3DS (`libctru`, `citro2d`, `tex3ds`, `bannertool` et `makerom`)
+- Un terminal MSYS2/devkitPro avec `make` configuré
+- Pour régénérer les assets du hub : Python et les dépendances fournies dans `hub/tools/python-site`
 
-  ![QR Code FBI](meta/qr_cia.png)
-
-- **Via CIA (recommandé, CFW Luma3DS requis)** : copiez `whg2-3ds.cia` sur votre carte SD et installez-le avec **FBI**.
-- **Via Homebrew Launcher** : copiez `whg2-3ds.3dsx` dans `sdmc:/3ds/`.
-- *(Optionnel pour le son)* : assurez-vous d'avoir dumpé le firmware DSP (`sdmc:/3ds/dspfirm.cdc`) avec **DSP1** ou **Rosalina** (`L+Down+Select` -> Miscellaneous options -> Dump DSP firmware).
-
----
-
-## Compiler depuis les sources (avec votre propre SWF)
-### Prérequis
-- **devkitPro** avec le groupe `3ds-dev` (`libctru`, `citro2d`, `tex3ds`, `bannertool`, `makerom`, `mkbcfnt`).
-- **Python 3.10+** avec `pillow` et `resvg-py`.
-- **FFmpeg** dans le `PATH`.
-- **JPEXS Free Flash Decompiler** (`ffdec-cli`) dans `tools/ffdec/` ou dans le `PATH`.
-
-### Étapes
-1. Placez votre fichier `theworldshardestgame2.swf` dans `input/`.
-2. Lancez le script de build complet :
-   ```bash
-   python tools/build_cia.py input/theworldshardestgame2.swf
-   ```
-   Les fichiers `whg2-3ds.3dsx` et `whg2-3ds.cia` seront générés à la racine.
+Les assets et les données de jeu sont destinés à un usage personnel. Ne redistribue pas de fichiers de jeu protégés par le droit d'auteur.
